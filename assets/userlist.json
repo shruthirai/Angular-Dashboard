@@ -1,0 +1,6 @@
+[ {"id": 1, "fname": "shreya", "lname": "shetty", "course": "computer science", "cgpa": 75, "status": "active"},
+  {"id": 2, "fname": "shruthi", "lname": "rai", "course": "commerce", "cgpa": 82, "status": "active"},
+  {"id": 3, "fname": "sushmitha", "lname": "shetty", "course": "physics", "cgpa": 98, "status": "inactive"},
+  {"id": 4, "fname": "dheeksha", "lname":"gowda", "course": "chemistry", "cgpa": 79, "status": "inactive"},
+  {"id": 5, "fname": "namitha", "lname":"amin", "course": "biology", "cgpa": 81, "status": "active"}
+]

@@ -1,0 +1,60 @@
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+
+<!-- modal -->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+  <!-- modal-dialog -->
+  <div class="modal-dialog" role="document">
+    <!-- modal-content -->
+    <div class="modal-content">
+      <!-- modal-header -->
+      <div class="modal-header">
+        <p>Add New User</p>
+        <button type="button" class="close" aria-label="Close" (click)="closeModalDialog()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <!-- modal-body -->
+      <div class="modal-body">
+        <form [formGroup]="userForm">
+          <div class="row form-group">
+            <div class="col-lg-12">
+              <label for="first Name"> First Name</label>
+              <input type="text" class="form-control" formControlName="fname" required>
+              <span class="text-danger" [hidden]="!(userForm.controls.fname['touched'] && !userForm.controls.fname.value )" >
+                First Name is required
+              </span>
+            </div>
+            <div class="col-lg-12">
+              <label for="first Name"> Last Name</label>
+              <input type="text" class="form-control" formControlName="lname" required>
+              <span class="text-danger" [hidden]="!(userForm.controls.lname['touched'] && !userForm.controls.lname.value )" >
+                  Last Name is required
+                </span>
+            </div>
+            <div class="col-lg-12">
+              <label for="first Name"> Course Name</label>
+              <input type="text" class="form-control" formControlName="course" required>
+              <span class="text-danger" [hidden]="!(userForm.controls.course['touched'] && !userForm.controls.course.value )" >
+                  Course is required
+                </span>
+            </div>
+            <div class="col-lg-12">
+              <label for="first Name"> CGPA</label>
+              <input type="text" class="form-control" formControlName="cgpa" required>
+              <span class="text-danger" [hidden]="!(userForm.controls.cgpa['touched'] && !userForm.controls.cgpa.value )" >
+                  CGPA is required
+                </span>
+            </div>            
+          </div>
+        </form>
+      </div>
+
+      <!-- modal-footer -->
+      <div class="modal-footer">
+        <button class="btn btn-primary" (click)="saveUser(userForm.value)"> Save</button>
+        <button type="button" class="btn btn-default" (click)="closeModalDialog()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

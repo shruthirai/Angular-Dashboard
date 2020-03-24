@@ -1,0 +1,69 @@
+<div class="container-fluid">
+  <div class="row mt-3">
+    <div class="col-lg-12 border">
+      <span class="lead border-bottom p-2"> User List</span> 
+        <button class="btn btn-sm btn-primary p-2 m-3"(click)="showDialog()">Add New User</button>
+      <table class="table table-bordered table-resposive table-striped">
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Course</th>
+          <th>CGPA</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+        <tr *ngFor="let item of userList; let i = index">
+          <td *ngIf="!isEdit">{{item.fname}}</td>
+          <td *ngIf="!isEdit">{{item.lname}}</td>
+          <td *ngIf="!isEdit">{{item.course}}</td>
+          <td *ngIf="!isEdit">{{item.cgpa}}</td>
+          <td *ngIf="!isEdit">{{item.status}}</td>
+          <td *ngIf="!isEdit">
+            <span class="m-1">
+                <i class="far fa-trash-alt" (click)="deleteItem(i)" data-toggle="tooltip" data-placement="right" title="Delete"></i>
+            </span>
+            <span class="m-1 pointer" (click)="editItem(item)">
+                <i class="fas fa-edit" data-toggle="tooltip" data-placement="right" title="Edit"></i>
+            </span>
+            <span class="m-1 pointer" (click)="activateDactivate(item)">
+                <i class="fas fa-thumbs-up" *ngIf="item.status != 'active'" data-toggle="tooltip" data-placement="right" title="Activate"></i>
+                <i class="fas fa-thumbs-down" *ngIf="item.status != 'inactive'" data-toggle="tooltip" data-placement="right" title="Deactivate"></i>
+            </span>
+          </td>
+
+          <td *ngIf="isEdit && selectedId== item.id"><input type="text" [(ngModel)]="item.fname"></td>
+          <td *ngIf="isEdit && selectedId== item.id"><input type="text" [(ngModel)]="item.lname"></td>
+          <td *ngIf="isEdit && selectedId== item.id"><input type="text" [(ngModel)]="item.course"></td>
+          <td *ngIf="isEdit && selectedId== item.id"><input type="text" [(ngModel)]="item.cgpa"></td>
+          <td *ngIf="isEdit && selectedId== item.id">{{item.status}}</td>
+          <td *ngIf="isEdit && selectedId== item.id">
+            <button class="btn btn-primary" (click)="save()">Save</button>
+            <button class="btn btn-default" (click)="cancel()">Cancel</button>
+          </td>
+
+          <td *ngIf="isEdit && selectedId != item.id">{{item.fname}}</td>
+          <td *ngIf="isEdit && selectedId != item.id">{{item.lname}}</td>
+          <td *ngIf="isEdit && selectedId != item.id">{{item.course}}</td>
+          <td *ngIf="isEdit && selectedId != item.id">{{item.cgpa}}</td>
+          <td *ngIf="isEdit && selectedId != item.id">{{item.status}}</td>
+          <td *ngIf="isEdit && selectedId != item.id">
+            <span class="m-1 pointer" (click)="editItem(item)">
+                <i class="far fa-trash-alt"></i>
+            </span>
+            <span class="m-1">
+                <i class="fas fa-edit"></i>
+            </span>
+          </td>
+        </tr>
+        <tr *ngIf="! (userList && userList.length)">
+          <td colspan=6> 
+              <div class="alert alert-secondary text-center"> No users to display !!!</div></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+<app-create-user [display]="display" (displayChange)="openModalDialog($event)" (addedUser)="addUser($event)"></app-create-user>
